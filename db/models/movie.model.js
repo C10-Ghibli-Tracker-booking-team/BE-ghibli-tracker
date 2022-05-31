@@ -1,31 +1,62 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const { CATEGORY_TABLE } = require('./category.model');
 
-const MOVIE_TABLE = 'movies'; // nombre de la tabla
+const MOVIE_TABLE = 'films'; // table name
 
 const MovieSchema = {
-  // El esquema define la estructura de la BD.
   id: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  name: {
+  release_year: {
+    allowNull: false,
+    type: DataTypes.DATEONLY,
+  },
+  title: {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  image: {
+  original_title: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  romanized_title: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  wiki_url: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  screenwriter: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  producer: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  music: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  duration: {
+    allowNull: false,
+    type: DataTypes.NUMBER,
+  },
+  audience_score: {
+    allowNull: false,
+    type: DataTypes.NUMBER,
+  },
+  cover: {
     allowNull: false,
     type: DataTypes.STRING,
   },
   description: {
     allowNull: false,
     type: DataTypes.TEXT,
-  },
-  price: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
   },
   createdAt: {
     allowNull: false,

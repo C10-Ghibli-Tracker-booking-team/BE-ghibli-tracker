@@ -3,7 +3,6 @@ const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
 
 class MoviesService {
-
   async find(query) {
     const options = {
       include: ['category'],
@@ -15,7 +14,6 @@ class MoviesService {
       options.limit = limit;
       options.offset = offset;
     }
-
 
     const movies = await models.Movie.findAll();
     return movies;
@@ -31,7 +29,6 @@ class MoviesService {
     }
     return movie;
   }
-
 }
 
 module.exports = MoviesService;
