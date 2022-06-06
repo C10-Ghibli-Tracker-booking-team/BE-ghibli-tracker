@@ -1,11 +1,10 @@
 const boom = require('@hapi/boom');
-
 const { models } = require('../libs/sequelize');
 
 class MoviesService {
   async find(query) {
     const options = {
-      include: ['category'],
+      // include: ['category'],
       where: {},
     };
 
@@ -15,7 +14,7 @@ class MoviesService {
       options.offset = offset;
     }
 
-    const movies = await models.Movie.findAll();
+    const movies = await models.Movie.findAll(options);
     return movies;
   }
 
@@ -28,6 +27,23 @@ class MoviesService {
       throw boom.conflict('Movie is block');
     }
     return movie;
+  }
+
+  async create(data) {
+    const newMovie = await models.Movie.create(data);
+    return newMovie;
+  }
+
+  async update(id, changes) {
+    const user = await this.findOne(id);
+    const rta = await user.update(changes);
+    return rta;
+  }
+
+  async delete(id) {
+    const user = await this.findOne(id);
+    await user.destroy();
+    return { id };
   }
 }
 

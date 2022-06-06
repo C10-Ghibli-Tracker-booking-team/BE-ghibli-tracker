@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { CATEGORY_TABLE } = require('./category.model');
+// const { CATEGORY_TABLE } = require('./category.model');
 
 const MOVIE_TABLE = 'films'; // table name
 
@@ -12,7 +12,7 @@ const MovieSchema = {
   },
   release_year: {
     allowNull: false,
-    type: DataTypes.DATEONLY,
+    type: DataTypes.NUMBER,
   },
   title: {
     allowNull: false,
@@ -39,7 +39,7 @@ const MovieSchema = {
     type: DataTypes.STRING,
   },
   music: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING,
   },
   duration: {
@@ -64,23 +64,29 @@ const MovieSchema = {
     field: 'created_at',
     defaultValue: Sequelize.NOW,
   },
-  categoryId: {
-    field: 'category_id',
+  updatedAt: {
     allowNull: false,
-    type: DataTypes.INTEGER,
-    references: {
-      model: CATEGORY_TABLE,
-      key: 'id',
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
+    type: DataTypes.DATE,
+    field: 'updated_at',
+    defaultValue: Sequelize.NOW,
   },
+  // categoryId: {
+  //   field: 'category_id',
+  //   allowNull: false,
+  //   type: DataTypes.INTEGER,
+  //   references: {
+  //     model: CATEGORY_TABLE,
+  //     key: 'id',
+  //   },
+  //   onUpdate: 'CASCADE',
+  //   onDelete: 'SET NULL',
+  // },
 };
 
 class Movie extends Model {
-  static associate(models) {
-    this.belongsTo(models.Category, { as: 'category' });
-  }
+  // static associate(models) {
+  //   this.belongsTo(models.Category, { as: 'category' });
+  // }
 
   static config(sequelize) {
     return {

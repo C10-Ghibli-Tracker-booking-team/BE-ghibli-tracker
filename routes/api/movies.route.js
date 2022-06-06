@@ -4,6 +4,9 @@ const MoviesService = require('../../services/movies.service');
 const validatorHandler = require('../../middlewares/validator.handler');
 const {
   getMovieSchema,
+  createMovieSchema,
+  updateMovieSchema,
+  deleteMovieSchema,
   queryMovieSchema,
 } = require('../../schemas/movie.schema');
 
@@ -35,6 +38,60 @@ router.get(
       } else {
         res.status(404).json({ message: 'Movie not found' });
       }
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.post(
+  '/',
+  validatorHandler(createMovieSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newMovie = await service.create(body);
+
+      res.status(201).json({
+        message: 'created',
+        data: newMovie,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.patch(
+  '/:id',
+  validatorHandler(getMovieSchema, 'params'),
+  validatorHandler(updateMovieSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const body = req.body;
+      const movie = await service.update(id, body);
+      res.status(200).json({
+        message: 'Movie updated',
+        movie,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.delete(
+  '/:id',
+  validatorHandler(deleteMovieSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const rta = await service.delete(id);
+      res.status(200).json({
+        message: 'Movie deleted',
+        rta,
+      });
     } catch (error) {
       next(error);
     }
