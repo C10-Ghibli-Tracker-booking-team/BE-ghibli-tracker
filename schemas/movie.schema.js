@@ -47,10 +47,6 @@ const updateMovieSchema = Joi.object({
   description: description.required(),
 });
 
-const deleteMovieSchema = Joi.object({
-  id: id.required(),
-});
-
 const queryMovieSchema = Joi.object({
   limit,
   offset,
@@ -60,6 +56,5 @@ module.exports = {
   getMovieSchema,
   createMovieSchema,
   updateMovieSchema,
-  deleteMovieSchema,
   queryMovieSchema,
 };

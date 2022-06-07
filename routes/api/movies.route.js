@@ -6,7 +6,6 @@ const {
   getMovieSchema,
   createMovieSchema,
   updateMovieSchema,
-  deleteMovieSchema,
   queryMovieSchema,
 } = require('../../schemas/movie.schema');
 
@@ -83,7 +82,7 @@ router.patch(
 
 router.delete(
   '/:id',
-  validatorHandler(deleteMovieSchema, 'params'),
+  validatorHandler(getMovieSchema, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
