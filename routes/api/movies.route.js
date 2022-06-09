@@ -88,7 +88,7 @@ router.delete(
       const { id } = req.params;
       const rta = await service.delete(id);
       res.status(200).json({
-        message: 'Movie deleted',
+        message: `Movie ${id} deleted`,
         rta,
       });
     } catch (error) {

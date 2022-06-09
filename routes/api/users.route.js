@@ -60,7 +60,10 @@ router.patch(
       const { id } = req.params;
       const body = req.body;
       const user = await service.update(id, body);
-      res.json(user);
+      res.status(200).json({
+        message: 'User updated',
+        user,
+      });
     } catch (error) {
       next(error);
     }
@@ -73,8 +76,11 @@ router.delete(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      await service.delete(id);
-      res.status(201).json({ id });
+      const rta = await service.delete(id);
+      res.status(200).json({
+        message: `User ${id} deleted`,
+        rta,
+      });
     } catch (error) {
       next(error);
     }
