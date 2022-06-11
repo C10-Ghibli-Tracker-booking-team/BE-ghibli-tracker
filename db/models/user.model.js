@@ -51,6 +51,15 @@ const UserSchema = {
 };
 
 class User extends Model {
+  static associate(models) {
+    this.belongsToMany(models.Movie, {
+      as: 'infoUserMovie',
+      through: models.UserMovie,
+      foreignKey: 'userId',
+      otherKey: 'movieId',
+    });
+  }
+
   static config(sequelize) {
     return {
       sequelize,

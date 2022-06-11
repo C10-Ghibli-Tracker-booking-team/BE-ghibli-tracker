@@ -26,7 +26,9 @@ class UserService {
   }
 
   async findOne(id) {
-    const user = await models.User.findByPk(id);
+    const user = await models.User.findByPk(id, {
+      include: ['infoUserMovie'],
+    });
     if (!user) {
       throw boom.notFound('User not found');
     }
@@ -43,6 +45,11 @@ class UserService {
     const user = await this.findOne(id);
     await user.destroy();
     return { id };
+  }
+
+  async addUserMovie(data) {
+    const movieInfo = await models.UserMovie.create(data);
+    return movieInfo;
   }
 }
 

@@ -8,6 +8,7 @@ const romanized_title = Joi.string().min(3).max(200);
 const wiki_url = Joi.string().uri();
 const screenwriter = Joi.string().min(3).max(200);
 const producer = Joi.string().min(3).max(200);
+const music = Joi.string().min(3).max(200);
 const duration = Joi.number().integer().min(5);
 const audience_score = Joi.number().integer().max(5);
 const cover = Joi.string().uri();
@@ -25,26 +26,29 @@ const createMovieSchema = Joi.object({
   title: title.required(),
   original_title: original_title.required(),
   romanized_title: romanized_title.required(),
-  wiki_url: wiki_url.required(),
+  wiki_url: wiki_url.optional(),
   screenwriter: screenwriter.required(),
   producer: producer.required(),
+  music: music.optional(),
   duration: duration.required(),
   audience_score: audience_score.required(),
-  cover: cover.required(),
+  cover: cover.optional(),
   description: description.required(),
 });
 
 const updateMovieSchema = Joi.object({
-  title: title.required(),
-  original_title: original_title.required(),
-  romanized_title: romanized_title.required(),
-  wiki_url: wiki_url.required(),
-  screenwriter: screenwriter.required(),
-  producer: producer.required(),
-  duration: duration.required(),
-  audience_score: audience_score.required(),
-  cover: cover.required(),
-  description: description.required(),
+  release_year: release_year,
+  title: title,
+  original_title: original_title,
+  romanized_title: romanized_title,
+  wiki_url: wiki_url,
+  screenwriter: screenwriter,
+  producer: producer,
+  music: music,
+  duration: duration,
+  audience_score: audience_score,
+  cover: cover,
+  description: description,
 });
 
 const queryMovieSchema = Joi.object({

@@ -6,6 +6,7 @@ const {
   getUserSchema,
   createUserSchema,
   updateUserSchema,
+  infoUserMovieSchema,
 } = require('../../schemas/user.schema');
 
 const router = express.Router();
@@ -81,6 +82,20 @@ router.delete(
         message: `User ${id} deleted`,
         rta,
       });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.post(
+  '/user-movie',
+  validatorHandler(infoUserMovieSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const movieInfo = await service.addUserMovie(body);
+      res.status(201).json(movieInfo);
     } catch (error) {
       next(error);
     }
