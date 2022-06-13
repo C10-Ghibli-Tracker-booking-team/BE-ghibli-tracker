@@ -48,6 +48,10 @@ class UserService {
   }
 
   async addUserMovie(data) {
+    const user = await models.User.findByPk(data.userId);
+    if (!user) {
+      throw boom.notFound('User not found');
+    }
     const movieInfo = await models.UserMovie.create(data);
     return movieInfo;
   }

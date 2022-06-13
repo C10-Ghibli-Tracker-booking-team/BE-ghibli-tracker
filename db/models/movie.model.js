@@ -26,7 +26,7 @@ const MovieSchema = {
     type: DataTypes.STRING,
   },
   wiki_url: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING,
   },
   screenwriter: {
@@ -50,7 +50,7 @@ const MovieSchema = {
     type: DataTypes.NUMBER,
   },
   cover: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING,
   },
   description: {
