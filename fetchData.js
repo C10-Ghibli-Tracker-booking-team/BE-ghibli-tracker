@@ -12,11 +12,10 @@ async function populateDb() {
       wiki_url:
         'https://en.wikipedia.org/w/index.php?search=' +
         mov.title.replaceAll(' ', '%'),
-      romanized_title: mov.original_title_romanised,
+      romanised_title: mov.original_title_romanised,
       cover: mov.image,
       description: mov.description,
-      screenwriter: mov.producer,
-      director: mov.director,
+      screenwriter: mov.director,
       producer: mov.producer,
       music: mov.director,
       release_year: mov.release_date,

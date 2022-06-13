@@ -21,7 +21,7 @@ const MovieSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  romanized_title: {
+  romanised_title: {
     allowNull: false,
     type: DataTypes.STRING,
   },
