@@ -97,4 +97,14 @@ router.delete(
   }
 );
 
+router.post('/populatedb', async (req, res, next) => {
+  try {
+    await service.populateDb();
+
+    res.status(201).send('DB populated with real data.');
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

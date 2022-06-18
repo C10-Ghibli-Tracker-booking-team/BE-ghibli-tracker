@@ -11,7 +11,7 @@ const MovieSchema = {
   },
   release_year: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
   },
   title: {
     allowNull: false,
@@ -43,11 +43,11 @@ const MovieSchema = {
   },
   duration: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
   },
   audience_score: {
     allowNull: false,
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
   },
   cover: {
     allowNull: true,
